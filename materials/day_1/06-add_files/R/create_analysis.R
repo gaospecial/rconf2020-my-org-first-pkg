@@ -19,12 +19,12 @@ create_analysis <- function(path = ".", folder = "avalanche_analysis", author = 
   usethis::ui_done("Writing {usethis::ui_path(folder)}")
   fs::dir_create(analysis_path)
 
-  use_avalanche_template("__________", folder = folder)
-  use_avalanche_template("__________", folder = folder)
+  use_avalanche_template("packages.R", folder = folder)
+  use_avalanche_template("analysis.R", folder = folder)
   use_avalanche_template(
-    "__________",
+    "report.Rmd",
     folder = folder,
-    data = list("__________")
+    data = list(author = author, title = title)
   )
 
   invisible(analysis_path)
@@ -35,7 +35,7 @@ use_avalanche_template <- function(template, folder, data = list()) {
     template = template,
     save_as = fs::path(folder, template),
     data = data,
-    package = "__________"
+    package = "avalanchr"
   )
 }
 
