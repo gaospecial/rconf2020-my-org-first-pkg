@@ -22,5 +22,6 @@ Roxygen: list(markdown = TRUE)
 Imports: 
     ggplot2,
     tibble,
-    data.table
+    data.table,
+    magrittr
 RoxygenNote: 7.1.1
