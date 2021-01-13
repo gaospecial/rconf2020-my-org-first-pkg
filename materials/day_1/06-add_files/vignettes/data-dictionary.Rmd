@@ -21,6 +21,6 @@ library(avalanchr)
 ```
 
 ```{r}
-# fill me in
+gt_data_dictionary()
 ```
 
