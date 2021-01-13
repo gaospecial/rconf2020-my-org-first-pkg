@@ -8,6 +8,5 @@ test_that("segmented reactor data returns correctly", {
 
   # `segmented_reactor_data` is returning the correct filtered data
   reactors <- unique(segmented_reactor_data$reactor)
-  expect_length(reactors, 1)
-  expect_equal(reactors, 7)
+  expect_length(reactors, 7)
 })
