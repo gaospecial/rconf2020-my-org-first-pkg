@@ -25,7 +25,8 @@ Imports:
     magrittr,
     rlang,
     tibble,
-    usethis
+    usethis,
+    shiny
 Suggests: 
     knitr,
     rmarkdown,
