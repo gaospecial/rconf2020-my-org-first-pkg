@@ -25,7 +25,7 @@ library(avalanchr)
 The main database connection function is `db_con()`
 
 ```{r}
-# fill me in
+db_con("residents_per_sector")
 ```
 
 
@@ -54,12 +54,12 @@ reactor_output
 avalanchr includes functionality to quickly summarize and visualize several key tasks. Two examples are `count_donations()` and `plot_donations()`:
 
 ```{r}
-# fill me in
+count_donations()
 ```
 
 
 ```{r}
-# fill me in
+plot_donations()
 ```
 
 
