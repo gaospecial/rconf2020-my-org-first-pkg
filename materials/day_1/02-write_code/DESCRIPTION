@@ -19,3 +19,8 @@ Encoding: UTF-8
 Language: es
 LazyData: true
 Roxygen: list(markdown = TRUE)
+Imports: 
+    ggplot2,
+    tibble,
+    data.table
+RoxygenNote: 7.1.1
