@@ -1,7 +1,7 @@
 #' Segment Shinra reactor data
 #'
 #' @param reactor_num The reactor number to segment by.
-#' @param data_table
+#' @param data_table Set True will output data.table
 #'
 #' @return a tibble or data.table filtered by `reactor_num`
 #' @export

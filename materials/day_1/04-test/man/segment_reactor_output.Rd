@@ -9,7 +9,7 @@ segment_reactor_output(reactor_num, data_table = FALSE)
 \arguments{
 \item{reactor_num}{The reactor number to segment by.}
 
-\item{data_table}{}
+\item{data_table}{Set True will output data.table}
 }
 \value{
 a tibble or data.table filtered by \code{reactor_num}

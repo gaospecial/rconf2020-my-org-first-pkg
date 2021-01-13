@@ -12,6 +12,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{rlang}{\code{\link[rlang]{.data}}}
+  \item{rlang}{\code{\link[rlang:tidyeval-data]{.data}}}
 }}
 
