@@ -7,7 +7,7 @@
 create_analysis(
   path = ".",
   folder = "avalanche_analysis",
-  name = "Author",
+  author = "Author",
   title = "Untitled Analysis"
 )
 }
@@ -16,9 +16,9 @@ create_analysis(
 
 \item{folder}{The name of the new analysis project}
 
-\item{title}{The title of the report}
-
 \item{author}{The author's name}
+
+\item{title}{The title of the report}
 }
 \value{
 invisibly, the path of the analysis directory

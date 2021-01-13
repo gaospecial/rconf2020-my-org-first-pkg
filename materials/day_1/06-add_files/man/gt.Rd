@@ -2,9 +2,12 @@
 % Please edit documentation in R/tables.R
 \name{gt_donations}
 \alias{gt_donations}
+\alias{gt_data_dictionary}
 \title{Create gt table for donations by sector}
 \usage{
 gt_donations(donations = get_donation_data())
+
+gt_data_dictionary()
 }
 \arguments{
 \item{donations}{a data frame created by \code{\link[=get_donation_data]{get_donation_data()}}}

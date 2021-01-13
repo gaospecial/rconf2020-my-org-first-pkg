@@ -13,9 +13,9 @@ theme_avalanche_h(base_size = 14, ...)
 theme_avalanche_v(base_size = 14, ...)
 }
 \arguments{
-\item{base_size}{base font size}
+\item{base_size}{base font size, given in pts.}
 
-\item{...}{Additional arguments passed to \code{\link[ggplot2:theme_minimal]{ggplot2::theme_minimal()}}}
+\item{...}{Additional arguments passed to \code{\link[ggplot2:ggtheme]{ggplot2::theme_minimal()}}}
 }
 \value{
 a ggplot theme.
