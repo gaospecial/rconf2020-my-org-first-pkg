@@ -71,7 +71,7 @@ Let's make the correction and save the table.
 dep_delay_summary <- 
   flights_tbl %>%
   group_by(month) %>%
-  summarize(avg_dep_delay = mean(dep_delay, ______))
+  summarize(avg_dep_delay = mean(dep_delay, na.rm = TRUE))
 
 dep_delay_summary
 ```
@@ -87,7 +87,7 @@ This data isn't really 'ours', the transformation was in-database. We actually h
 
 ```{r}
 dep_delay_summary %>%
-  ______ %>%
+  as_tibble() %>%
   readr::write_csv("dep_delay_summary.csv")
 ```
 
@@ -112,7 +112,7 @@ dep_delay_summary %>% dplyr::summarize(n = n())
 There is another **dplyr** function that will work. Can you find out what it is?
 
 ```{r}
-dep_delay_summary %>% ______
+dep_delay_summary %>% tally()
 ```
 
 This is great! We got a row count and the database did it for us. This is useful for those times you'll see a number in the tens of millions (prompting us to consider whether collecting the data will be worth the wait).
