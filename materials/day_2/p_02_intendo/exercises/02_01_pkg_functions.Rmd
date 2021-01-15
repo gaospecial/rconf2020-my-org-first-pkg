@@ -34,19 +34,22 @@ con <-
 
 Then we can make a `tbl_dbi` object with the connection object and the table name.
 
+`daily_users` 其中并没有 `date` 列，因此需要先利用 `date()` 新建一个列。
+
 ```{r}
-daily_users <- _____
+daily_users <- tbl_daily_users(con) %>%
+  mutate(date = date(time))
 ```
 
 We can define the daily active users (DAU) for a specific date.
 
 ```{r calculate_dau_for_date}
 
-date <- "2015-02-04"
+date <- "2015-02-25"
 
 daily_users %>%
   filter(date == {{ date }}) %>%
-  select(..variable_name..) %>%
+  select(user_id) %>%
   distinct() %>%
   count() %>%
   pull(n)
@@ -69,8 +72,8 @@ days_in_month <-
   as.character()
 
 daily_users %>%
-  filter(date %in% {{ ..variable_name.. }}) %>%
-  select(..variable_name..) %>%
+  filter(date %in% {{ days_in_month }}) %>%
+  select(user_id) %>%
   distinct() %>%
   count() %>%
   pull(n)
@@ -82,11 +85,11 @@ Now we have to *segment* our user. It's really just another word for filtering. 
 
 ```{r calculate_dac_for_date}
 
-date <- "2015-02-04"
+date <- "2015-02-25"
 
 daily_users %>%
   filter(date == {{ date }}) %>%
-  filter(is_customer == ..value..) %>% 
+  filter(is_customer == 1) %>% 
   select(user_id) %>%
   distinct() %>%
   count() %>%
@@ -97,7 +100,7 @@ The ARPU, the average revenue per user, can calculated where we consider just th
 
 ```{r calculate_arpu30_up_to_date}
 
-date <- "2015-02-04"
+date <- "2015-02-28"
 days_back <- 30
 
 days_in_period <- 
@@ -118,8 +121,8 @@ dau_period <-
 iap_revenue_period <-
   daily_users %>%
   filter(date %in% {{ days_in_period }}) %>%
-  summarize(iap_rev = sum(iap_revenue)) %>%
-  pull(..value..)
+  summarize(iap_rev = sum(iap_revenue, na.rm = TRUE)) %>%
+  pull(iap_rev)
 
 iap_revenue_period / dau_period
 ```
