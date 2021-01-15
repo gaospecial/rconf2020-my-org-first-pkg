@@ -62,11 +62,14 @@ Let's now get the monthly active users (MAU) for a specific month in 2015. It's 
 year <- 2015
 month <- 2
 
+begin <- make_date(year = year, month = month, day = 1L)
+stop <- make_date(year = year, month = month + 1, day = 1L) - days(1)
+
 # Get a vector of character-based dates
 days_in_month <- 
   seq(
-    from = make_date(year = year, month = month, day = 1L),
-    to = (make_date(year = year, month = month + 1, day = 1L) - days(1)),
+    from = begin,
+    to = stop,
     by = 1
   ) %>%
   as.character()
@@ -78,6 +81,19 @@ daily_users %>%
   count() %>%
   pull(n)
 ```
+
+这样可能有点太复杂，用下面的方法实现更加优雅。
+
+```{r}
+stop <- stop + days(1)
+daily_users %>%
+  filter(time > begin, time < stop) %>%
+  select(user_id) %>%
+  distinct() %>%
+  count() %>%
+  pull(n)
+```
+
 
 The DAC is the count of daily active *customers*. Who qualifies as a customer? They must have spent some amount of money during or before the day that's considered.
 
