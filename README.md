@@ -5,6 +5,12 @@ My Organization's First R Package
 
 by Rich Iannone and Malcolm Barrett
 
+
+
+> rconf2020 的这个教程，以为你自己的组织写一个 R 包为情景，系统讲解了创建 R 包所使用的的工具、要考虑的因素、如何写函数、进行数据库操作和生成自动化报表等各个方面的内容，综合性很强，是学习 R 包开发不可多得的教程。本仓库记录了本人的操作过程。其中，重要的知识点已经总结到 [Notes.md](./Notes.md) 中去了。欢迎查阅，共同学习。
+>
+> --- @gaospecial
+
 -----
 
 :spiral_calendar: January 27 and 28, 2020  
