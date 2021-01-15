@@ -1,0 +1,75 @@
+---
+title: "导入游戏数据到自己的 MySQL 服务器中"
+author: "@gaospecial"
+date: "`r Sys.Date()`"
+---
+
+
+# 引言
+
+这个 Workshop 接下来将使用一个游戏公司的数据进行演示。
+游戏数据由 [../generate_game_studio_data.R](generate_game_studio_data.R) 自动生成，
+并保存在为 [../table_daily_users.rds](table_daily_users.rds),
+[../table_revenue.rds](table_revenue.rds) 和 [../table_users.rds](table_users.rds) 
+等 3 个文件。
+
+由于我们不方便访问作者提供的 AWS 云服务器，所以我使用了自己的阿里云创建了一个
+MySQL 数据库，并将这些数据写进去，以供后续练习之用。
+
+## 使用自己的服务器
+
+如果要使用自己的服务器，最简单的方法是使用 `usethis::edit_r_environ()` 命令。
+在打开的文件中，写入下列内容。
+
+```{bash}
+DBNAME=dbname
+USERNAME=username
+PASSWORD=password
+HOST=server
+PORT=3306
+```
+
+## 存取数据
+
+首先读取上述数据。
+
+```{r}
+daily_users <- readRDS("../table_daily_users.rds")
+revenue <- readRDS("../table_revenue.rds")
+users <- readRDS("../table_users.rds")
+```
+
+接下来连接到数据库，并将数据写入。
+
+```{r}
+library(devtools)
+library(usethis)
+load_all()
+
+con <- db_con()
+tables <- DBI::dbListTables(con)
+tables
+```
+
+这时候数据库还是没有表的。
+
+```{r eval=`any(c("daily_users","revenue","users") %in% tables)`}
+set.seed(2021)
+library(dplyr)
+copy_to(con, daily_users %>% sample_n(500), name = "daily_users", temporary=FALSE)
+copy_to(con, revenue %>% sample_n(500), name = "revenue", temporary=FALSE)
+copy_to(con, users %>% sample_n(100), name = "users", temporary=FALSE)
+
+```
+
+`copy_to()` 可以将数据上传到服务器（需要设置 `temporary=FALSE` ）。
+
+## 测试数据
+
+```{r}
+DBI::dbListTables(con)
+tbl_daily_users(con)
+tbl_revenue(con)
+tbl_users(con)
+```
+
