@@ -45,7 +45,7 @@ Now with `daily_users` and a little **dplyr**, we can easily query the table for
 ```{r get_user_info}
 daily_users %>%
   mutate(date = as.Date(time)) %>%
-  filter(date == "2015-10-31", at_eoc == 1) %>%
+  filter(date < "2015-10-31", at_eoc == 1) %>%
   select(user_id, total_revenue) %>%
   group_by(user_id) %>%
   summarize(total_revenue = max(total_revenue, na.rm = TRUE)) %>%
